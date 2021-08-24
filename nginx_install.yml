@@ -1,0 +1,45 @@
+---
+- hosts: all
+  vars:
+    hostname: "blog.julia.vorozhko.net"
+  tasks:
+    - name: Update apt packages
+      become: true
+      apt:
+        update_cache: yes
+    - name: install nginx
+      apt: name=nginx state=latest
+      become: yes
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+      become: yes
+    - name: Generate Nginx conf from template
+      template:
+        src: blog_site.j2
+        dest: /etc/nginx/sites-available/blog
+        mode: 0777
+      become: yes
+    - name: create symlink
+      file:
+        src: /etc/nginx/sites-available/blog
+        dest: /etc/nginx/sites-enabled/blog
+        state: link
+      become: yes
+    - name: create the directory
+      file:
+        path: /var/www/blog
+        state: directory
+        mode: '0777'
+      become: yes
+    - name: copy the content of the web site
+      copy:
+        src: ./site/
+        dest: /var/www/blog/
+      become: yes
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+      become: yes
