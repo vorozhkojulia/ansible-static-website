@@ -4,9 +4,9 @@ This ansible playbook set up nginx server with custom virtual host
 ## Preparation for launch
 
 - Create Ubuntu server with Public IP
-- In Route 53 you mast have Hosted zones und Host Name (value - your Public IP)
+- Add you Host Name in Route 53
 - Update variables ```hostname``` in nginx_install.yml with your Host Name
-- Add your Publik IP and User into inventory.txt file:
+- Add your Public IP and User into inventory.txt file:
 ```
 11.22.11.22 user=ubuntu
 ```
@@ -17,8 +17,6 @@ This ansible playbook set up nginx server with custom virtual host
 ```
 ansible-playbook nginx_install.yml -i inventory.txt
 ```
-
-![Wordpress installation](./resume_julia.png) 
 
 ## Inputs
 
