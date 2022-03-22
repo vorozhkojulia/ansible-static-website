@@ -20,6 +20,6 @@ ansible-playbook nginx_install.yml -i inventory.txt
 
 ## Inputs
 
-- Your Host Name (nginx_install.yml)
-- User Name (inventory.txt)
+- ```hostname``` Your Host Name (nginx_install.yml)
+- ```ansible_user``` User Name (inventory.txt)
 - Public IP (inventory.txt)

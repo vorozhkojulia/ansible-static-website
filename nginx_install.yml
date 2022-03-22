@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    hostname: "blog.julia.vorozhko.net"
+    hostname: "your-site-name.com"
   tasks:
     - name: Update apt packages
       become: true
